@@ -1,33 +1,31 @@
 package ge.tbc.testautomation.javaoop.runners;
+import ge.tbc.testautomation.javaoop.figures.Rectangle;
+import ge.tbc.testautomation.javaoop.figures.Triangle;
+import ge.tbc.testautomation.javaoop.util.HelperFunctions;
 
-import ge.tbc.testautomation.javaoop.figures.Circle;
-
-import java.util.Random;
-
-import ge.tbc.testautomation.javaoop.util.Util;
 
 public class Main {
     public static void main(String[] args){
-        Random random = new Random();
 
-        Circle circle1 = new Circle(random.nextDouble(5,10));
-        System.out.println(Circle.numberOfCircleInstances);
-        System.out.println(Util.circleToString(circle1));
+        //rectangle area, perimeter
+        Rectangle rectangle1 = new Rectangle(2,6);
+        System.out.println("Area of rectangle: "+rectangle1.getArea());
+        System.out.println("Perimeter of rectangle: "+rectangle1.getPerimeter());
 
-        Circle circle2 = new Circle(random.nextDouble(10,15));
-        System.out.println(Circle.numberOfCircleInstances);
-        System.out.println(Util.circleToString(circle2));
+        //triangle area,perimeter
+        Triangle triangle = new Triangle(1,2,4,5);
+        System.out.println("Area of triangle: "+triangle.getArea());
+        System.out.println("Perimeter of triangle: "+triangle.getPerimeter());
 
-        Circle circle3 = new Circle(random.nextDouble(2,25));
-        System.out.println(Circle.numberOfCircleInstances);
-        System.out.println(Util.circleToString(circle3));
+        //BONUS(სტატიკური ფუნქცია)
+        System.out.println(staticMethod());
 
-        Circle circle4 = new Circle(random.nextDouble(11,34));
-        System.out.println(Circle.numberOfCircleInstances);
-        System.out.println(Util.circleToString(circle4));
-        
-        Circle circle5 = new Circle(random.nextDouble(7,9));
-        System.out.println(Circle.numberOfCircleInstances);
-        System.out.println(Util.circleToString(circle5));
+        //rectangle2 შესადარებლად (ბონუს დავალება)
+        Rectangle rectangle2 = new Rectangle(7,3);
+        HelperFunctions.compareRectangles(rectangle1, rectangle2);
+    }
+//  იმედია სწორია "BONUS(სტატიკური ფუნქციაც)."-ის შესასრულებლად ;დ
+    public static String staticMethod() {
+        return "This is a static method";
     }
 }
