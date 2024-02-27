@@ -1,31 +1,52 @@
 package ge.tbc.testautomation.javaoop.figures;
 
-import ge.tbc.testautomation.exceptionsStringOperationsRegex.LimitException;
-import ge.tbc.testautomation.exceptionsStringOperationsRegex.RadiusException;
+import ge.tbc.testautomation.abstractClassesInterfaces.interfaces.IResizableCircle;
+import ge.tbc.testautomation.abstractClassesInterfaces.interfaces.IValidCircle;
 
-public class Circle {
+public class Circle extends Figure implements IResizableCircle, IValidCircle {
     private double radius;
 
     public void setRadius(double radius) {
         this.radius = radius;
     }
 
-    public double getRadius() {
+    public Circle(double radius){
+        this.radius = radius;
+    }
+    public double getRadius(){
         return radius;
     }
-    public static int numberOfCircleInstances;
+    @Override
+    public double getArea() {
+        return Math.PI * Math.pow(radius,2);
+    }
 
-    public Circle(double radius) {
-        this.radius = radius;
-        numberOfCircleInstances++;
+    @Override
+    public double getLength() {
+        return 2 * Math.PI * radius;
+    }
 
-        if (numberOfCircleInstances > 5){
-            throw new LimitException("INSTANTIATION LIMIT REACHED");
-        }
-        if (radius < 0){
-            throw new RadiusException("RADIUS VALUE NOT VALID");
-        }
+    @Override
+    public void printPackageName() {
+        Package packageName = this.getClass().getPackage();
+        System.out.println("Package name: "+packageName.getName());
+    }
+
+    @Override
+    public Circle returnDoubleSizedCircle(Circle circle) {
+        circle.radius *=2;
+        return circle;
 
     }
 
+    @Override
+    public Circle returnCustomSizedCircle(Circle circle, double byvValue) {
+        circle.radius *= byvValue;
+        return circle;
+    }
+
+    @Override
+    public boolean validateCircle(Circle circle) {
+        return circle.radius > 0;
+    }
 }

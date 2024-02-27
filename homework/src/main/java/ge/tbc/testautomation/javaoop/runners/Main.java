@@ -1,66 +1,46 @@
 package ge.tbc.testautomation.javaoop.runners;
-import ge.tbc.testautomation.exceptionsStringOperationsRegex.LimitException;
-import ge.tbc.testautomation.exceptionsStringOperationsRegex.RadiusException;
 import ge.tbc.testautomation.javaoop.figures.Circle;
-import ge.tbc.testautomation.javaoop.figures.Rectangle;
-import ge.tbc.testautomation.javaoop.figures.Triangle;
-import ge.tbc.testautomation.javaoop.util.HelperFunctions;
-
-import java.util.Random;
-import java.util.regex.Pattern;
-
 
 public class Main {
     public static void main(String[] args) {
-//        radius exception
-        try {
-            Circle circle = new Circle(-2);
-        } catch (RadiusException radiusException) {
-            System.out.println(radiusException.getMessage());
-        }
+//        creating circle
+        Circle newCircle = new Circle(10);
+        System.out.println("Starting radius of a circle: "+newCircle.getRadius());
 
-//        limit exception
-        System.out.println();
-        try {
-            Random random = new Random();
-            for(int i = 0; i<=5; i++){
-                double radius = (random.nextDouble()*10);
-                new Circle(radius);
-            }
-        } catch (LimitException limitException) {
-            System.out.println(limitException.getMessage());
-        }
+//        circle validation
+        System.out.println("Such circle can exist: "+newCircle.validateCircle(newCircle));
 
-//        string operations
-        System.out.println();
-        String str = "Test Automation Bootcamp 6, 2022";
+//        current package name
+        newCircle.printPackageName();
 
-//        automation to lower case
-        System.out.println(str.toLowerCase().substring(5,15));
-        System.out.println();
+//        getting length and area of this circle
+        System.out.println("Circle length:"+newCircle.getLength());
+        System.out.println("Circle area: "+newCircle.getArea());
 
-//        every word on new line
-        String[] partedStr = str.split(" ");
-        for (String part : partedStr) {
-            System.out.println(part);
-        }
-        System.out.println();
+//        double sized radius
+        Circle doubleSizedRadius = newCircle.returnDoubleSizedCircle(newCircle);
+        System.out.println("Double sized circle radius: "+doubleSizedRadius.getRadius());
 
-//        length of sentence
-        System.out.println(str.length());
-        System.out.println();
+//        double sized radius circle area
+        double doubleSizedArea = doubleSizedRadius.getArea();
+        System.out.println("Double sized circle area: "+doubleSizedArea);
 
-//        changing whitespaces with -
-        System.out.println(str.replaceAll(" ", "-"));
-        System.out.println();
+//        double sized radius circle length
+        double doubleSizedLength = doubleSizedRadius.getLength();
+        System.out.println("Double sized circle length: "+doubleSizedLength);
 
-//        creating phone numbers
-        String[] phoneNumbersForTest = {"555-55-55-55", "599-990124", "245221245"};
-        for (String phoneNumber : phoneNumbersForTest) {
-            System.out.println(phoneNumber.replaceAll("-", "") + " - " + phoneNumberValidation(phoneNumber));
-        }
-    }
-    private static boolean phoneNumberValidation(String phoneNumber){
-        return Pattern.matches( "(555|595|592|599)\\d{6}", phoneNumber.replaceAll("-",""));
+//        custom sized circle radius
+//        გაორმაგების მერე ცვლადის მნიშვნელობას გაორმაგებულს იტოვებდა და აქ საწყის მნიშვნელობას ვერ ვიყენებდი სხვანაირად
+        newCircle.setRadius(10);
+        Circle customSizedRadius = newCircle.returnCustomSizedCircle(newCircle, 5);
+        System.out.println("Custom sized circle radius : "+customSizedRadius.getRadius());
+
+//        custom sized circle area
+        double customSizedArea = customSizedRadius.getArea();
+        System.out.println("Custom sized circle area: "+customSizedArea);
+
+//        custom sized circle length
+        double customSizedLength = customSizedRadius.getLength();
+        System.out.println("Custom sized circle length: "+customSizedLength);
     }
 }
