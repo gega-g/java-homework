@@ -7,4 +7,8 @@ public class Figure {
     public double getPerimeter(){
         return -1.0;
     }
+    public static int numberOfInstances;
+    public Figure(){
+        numberOfInstances++;
+    }
 }
