@@ -18,7 +18,7 @@ public class Circle extends Figure implements IResizableCircle, IValidCircle, Co
     }
     @Override
     public String toString(){
-        return "Circle radius is" + radius;
+        return "Circle radius is " + radius;
     }
     @Override
     public double getArea() {
